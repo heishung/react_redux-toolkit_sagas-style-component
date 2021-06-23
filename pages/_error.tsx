@@ -1,10 +1,8 @@
-import { Typography } from "@material-ui/core"
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import React from "react"
-import { AppContext } from "../components/AppContext"
-import { SpacingPaper } from "../components/atoms"
-import { HeaderArticleContainer } from "../components/organisms"
-import { Layout } from "../components/templates"
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Button, Result } from 'antd';
+import React from "react";
+import { AppContext } from "../components/AppContext";
+import { Layout } from "../components/templates";
 
 const useStyles = makeStyles((_: Theme) =>
   createStyles({
@@ -21,17 +19,16 @@ type Props = {
  * @see https://nextjs.org/docs/advanced-features/custom-error-page#500-page
  */
 function Error(props: Props) {
-  const { statusCode } = props
+  const { statusCode }: any = props
   const classes = useStyles(props)
   return (
     <Layout className={classes.root}>
-      <HeaderArticleContainer>
-        <SpacingPaper>
-          <Typography variant="h5">
-            Http status code {statusCode} error !
-          </Typography>
-        </SpacingPaper>
-      </HeaderArticleContainer>
+      <Result
+        status={statusCode}
+        title={statusCode}
+        subTitle="Sorry, you are not authorized to access this page."
+        extra={<Button type="primary">Back Home</Button>}
+      />
     </Layout>
   )
 }
