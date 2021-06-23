@@ -14,7 +14,7 @@ export const Layout = function (props: Props) {
   const { selectedPage } = usePage()
 
   return (
-    <section className={` ${className}`}>
+    <section className={className}>
       <Head>
         <title>{selectedPage.title}</title>
       </Head>

@@ -1,17 +1,10 @@
-import { Typography } from "@material-ui/core"
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import { Button, Result } from 'antd'
 import React, { useEffect } from "react"
-import { SpacingPaper } from "../components/atoms"
-import { HeaderArticleContainer } from "../components/organisms"
 import { Layout } from "../components/templates"
 import { Page } from "../constants"
 import { usePage } from "../hooks"
 
-const useStyles = makeStyles((_: Theme) =>
-  createStyles({
-    root: {},
-  })
-)
+
 
 type Props = {}
 
@@ -21,7 +14,6 @@ type Props = {}
  * @see https://github.com/zeit/next.js/blob/master/errors/custom-error-no-custom-404.md
  */
 function NotFoundError(props: Props) {
-  const classes = useStyles(props)
   const { changePage } = usePage()
 
   useEffect(() => {
@@ -29,12 +21,13 @@ function NotFoundError(props: Props) {
   }, [])
 
   return (
-    <Layout className={classes.root}>
-      <HeaderArticleContainer>
-        <SpacingPaper>
-          <Typography variant="h5">404 Page NotFound :(</Typography>
-        </SpacingPaper>
-      </HeaderArticleContainer>
+    <Layout >
+      <Result
+        status={404}
+        title={404}
+        subTitle="Sorry, you are not authorized to access this page."
+        extra={<Button type="primary">Back Home</Button>}
+      />
     </Layout>
   )
 }
